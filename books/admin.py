@@ -1,5 +1,5 @@
 from django.contrib import admin
-from books.models import Books, ChapterBooks, Photos
+from books.models import Books, Photos
 
 
 @admin.register(Books)
@@ -11,13 +11,6 @@ class BooksAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         return Books.objects.select_related("chapter").all()
-
-
-@admin.register(ChapterBooks)
-class ChapterBooksAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-    fields = ['name', 'tag_alib']
-    ordering = ['name']
 
 
 @admin.register(Photos)

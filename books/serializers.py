@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from books.models import Books, ChapterBooks, Photos
+from books.models import Books, Photos
 
 
 class BooksSerializer(serializers.HyperlinkedModelSerializer):
@@ -8,12 +8,6 @@ class BooksSerializer(serializers.HyperlinkedModelSerializer):
         model = Books
         fields = ["author", "name", "chapter", "price", "management", "from_made_in", "made_in", "year", "pages",
                   "status", "date_active", "comment"]
-
-
-class ChapterBooksSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = ChapterBooks
-        fields = ["name", "tag_alib"]
 
 
 class PhotosSerializer(serializers.HyperlinkedModelSerializer):
