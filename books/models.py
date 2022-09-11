@@ -12,6 +12,9 @@ class Books(models.Model):
     year = models.PositiveIntegerField(verbose_name="Год выпуска")
     management = models.PositiveIntegerField(verbose_name="Номер коробки, где лежит книга")
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         ordering = ["name"]
         verbose_name = "Книгу"
@@ -21,6 +24,9 @@ class Books(models.Model):
 class Photos(models.Model):
     book = models.ForeignKey(Books, on_delete=models.CASCADE, verbose_name="Книга")
     photo = models.ImageField(verbose_name="Картинка книги", upload_to=directory_path)
+
+    def __str__(self):
+        return self.book.name
 
     class Meta:
         ordering = ["book"]
