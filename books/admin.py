@@ -5,12 +5,8 @@ from books.models import Books, Photos
 @admin.register(Books)
 class BooksAdmin(admin.ModelAdmin):
     list_display = ('name',)
-    fields = ['author', 'name', 'chapter', 'price', 'management', 'from_made_in', 'made_in', 'year', 'status',
-              'date_active', 'comment']
+    fields = ['author', 'name', 'management', 'made_in', 'year']
     ordering = ['name']
-
-    def get_queryset(self, request):
-        return Books.objects.select_related("chapter").all()
 
 
 @admin.register(Photos)
@@ -20,4 +16,4 @@ class PhotosAdmin(admin.ModelAdmin):
     ordering = ['book']
 
     def get_queryset(self, request):
-        return Books.objects.select_related("book").all()
+        return Photos.objects.select_related("book").all()

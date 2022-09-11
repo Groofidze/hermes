@@ -6,8 +6,7 @@ from books.models import Books, Photos
 class BooksSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Books
-        fields = ["author", "name", "chapter", "price", "management", "from_made_in", "made_in", "year", "pages",
-                  "status", "date_active", "comment"]
+        fields = ["author", "name", "management", "made_in", "year"]
 
 
 class PhotosSerializer(serializers.HyperlinkedModelSerializer):

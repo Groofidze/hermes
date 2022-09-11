@@ -1,14 +1,16 @@
 from django.db import models
 
+
+def directory_path(instance, filename):
+    return f'books/{instance.book.id}/{filename}'
+
+
 class Books(models.Model):
     author = models.CharField(verbose_name="Автор", max_length=128)
     name = models.CharField(verbose_name="Название книги", max_length=128)
-    made_in = models.CharField(verbose_name="Издательство", max_length=64, blank=True, null=True)
-    year = models.PositiveIntegerField(verbose_name="Год выпуска", blank=True, null=True)
+    made_in = models.CharField(verbose_name="Издательство", max_length=64)
+    year = models.PositiveIntegerField(verbose_name="Год выпуска")
     management = models.PositiveIntegerField(verbose_name="Номер коробки, где лежит книга")
-
-    def __str__(self):
-        return f"{self.name}"
 
     class Meta:
         ordering = ["name"]
@@ -18,10 +20,7 @@ class Books(models.Model):
 
 class Photos(models.Model):
     book = models.ForeignKey(Books, on_delete=models.CASCADE, verbose_name="Книга")
-    photo = models.ImageField(verbose_name="Картинка книги", blank=True, null=True)
-
-    def __str__(self):
-        return f"{self.book.name}"
+    photo = models.ImageField(verbose_name="Картинка книги", upload_to=directory_path)
 
     class Meta:
         ordering = ["book"]
