@@ -10,7 +10,7 @@ class Books(models.Model):
     name = models.CharField(verbose_name="Название книги", max_length=128)
     made_in = models.CharField(verbose_name="Издательство", max_length=64)
     year = models.PositiveIntegerField(verbose_name="Год выпуска")
-    management = models.PositiveIntegerField(verbose_name="Номер коробки, где лежит книга")
+    management = models.CharField(verbose_name="Индификатор коробки, где лежит книга", max_length=128)
 
     def __str__(self):
         return self.name
